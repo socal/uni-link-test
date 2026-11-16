@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>App Link Tester</title>
+    <style>
+      body {
+        max-width: 36rem;
+        margin: 4rem auto;
+        padding: 0 1rem;
+        font: 1rem/1.5 system-ui, sans-serif;
+      }
+      label,
+      input,
+      button {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      input,
+      button {
+        margin-top: 0.5rem;
+        padding: 0.75rem;
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>App Link Tester</h1>
+    <form id="link-form">
+      <label for="url">URL to open</label>
+      <input
+        id="url"
+        name="url"
+        type="url"
+        placeholder="https://identity.ci.custom.com/"
+        required
+      />
+      <button type="submit">Open URL</button>
+    </form>
+    <script>
+      document.getElementById('link-form').addEventListener('submit', (event) => {
+        event.preventDefault()
+        const url = new URL(document.getElementById('url').value)
+        if (url.protocol !== 'https:' && url.protocol !== 'http:') {
+          alert('Enter an HTTP or HTTPS URL.')
+          return
+        }
+        window.location.href = url.href
+      })
+    </script>
+  </body>
+</html>
